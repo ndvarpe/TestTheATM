@@ -2,6 +2,8 @@
 <p>Account #<strong>{{vm.accountDetails.account_number}}</strong></p>
 <p>Card #<strong>{{vm.accountDetails.card_number}}</strong></p>
 <p>Expires on <strong>{{vm.accountDetails.expiration}}</strong></p>
+<p>Balance <strong>${{vm.accountDetails.current_balance}}</strong></p>
+
 
 <div class="col-md-6 col-md-offset-3">
     <div class="alert alert-danger" ng-if="vm.errorMessage != null && vm.errorMessage" ng-bind="vm.errorMessage"></div>

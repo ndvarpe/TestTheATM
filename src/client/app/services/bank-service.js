@@ -9,13 +9,18 @@
 
     function bankService($http, $q) {
         var service = {
-            getTestData: getTestData
+            getTestData: getTestData,
+            updateDetails: updateDetails
         };
 
         return service;
 
         function getTestData() {
             return $http.get('/api/getatmdata').then(successHandler);
+        }
+
+        function updateDetails(details) {
+            return $http.post('/api/updatedetails', details).then(successHandler);
         }
 
         function successHandler(response) {

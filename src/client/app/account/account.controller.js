@@ -5,9 +5,9 @@
         .module('app')
         .controller('AccountController', accountController);
 
-    accountController.$inject = ['$stateParams', '$state', '$modal'];
+    accountController.$inject = ['$stateParams', '$state', '$modal', 'bankService'];
 
-    function accountController($stateParams, $state, $modal) {
+    function accountController($stateParams, $state, $modal, bankService) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'account';
@@ -32,17 +32,21 @@
         }
 
         function withdraw() {
-            if (parseFloat(vm.money) % 100 !== 0) {
+            var currentBalance = parseFloat(vm.accountDetails.current_balance);
+            var money = parseFloat(vm.money);
+            if (money % 100 !== 0) {
                 vm.modalTitle = "Error: Invalid amount";
                 vm.modalBody = "Sum to withdraw must be a multiple of 100";
                 openModal();
             }
             else {
-                if (parseFloat(vm.money) > parseFloat(vm.accountDetails.current_balance)) {
+                if (money > currentBalance) {
                     openErrorModal();
                 }
                 else {
                     openSuccessModal();
+                    vm.accountDetails.current_balance = (currentBalance - money).toString();
+                    bankService.updateDetails(vm.accountDetails).then(function () { }, function () { });
                 }
             }
         }
