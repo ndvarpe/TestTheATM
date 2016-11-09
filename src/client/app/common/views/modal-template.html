@@ -1,0 +1,15 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">Message</h3>
+</div>
+<div class="modal-body">
+    <p ng-bind="viewModel.messageObj.modalTitle">
+
+    </p>
+    <p ng-bind="viewModel.messageObj.modalBody">
+
+    </p>
+    <p ng-if="viewModel.messageObj.modalBody != null" style="color:red;">Please do not forget to remove the card.</p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="viewModel.ok()">OK ({{viewModel.counter}})</button>
+</div>
