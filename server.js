@@ -1,5 +1,6 @@
 // set up ======================================================================
-var express  = require('express');
+var express = require('express');
+var http = require('http');
 var app      = express(); 								// create our app w/ express
 var port  	 = process.env.PORT || 8080; 				// set the port
 
