@@ -62,7 +62,7 @@
             vm.accountDetails.links = [{ rel: "self", href: "http://localhost:3000/#/createedit/" + vm.accountDetails.account_number }];
             function successHandler(response) {
                 if (response == 'Exists') {
-                    alert('No account found. Redirecting to list page');
+                    alert('Account with same account number or card number already exists. Redirecting to list page');
                 }
                 $state.go('account-list');
             }

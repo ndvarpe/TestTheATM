@@ -6,16 +6,16 @@
     <form name="form" ng-submit="vm.submit()" role="form">
         <div class="form-group" ng-class="{ 'has-error': form.card_number.$dirty && form.card_number.$invalid }">
             <label for="card_number">Card Number</label>
-            <input  type="text" ng-minlength="16" ng-maxlength="16" name="card_number" id="card_number" class="form-control" ng-model="vm.accountDetails.card_number" required />
+            <input type="text" ng-minlength="16" ng-maxlength="16" name="card_number" id="card_number" class="form-control" ng-model="vm.accountDetails.card_number" required />
             <span ng-show="form.card_number.$dirty && form.card_number.$invalid" class="help-block">Card number  must be of length 16.</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.expiration.$dirty && form.expiration.$error.required }">
             <label for="expiration">Expiration</label>
-            <input type="text" name="expiration" id="expiration" class="form-control" ng-model="vm.accountDetails.expiration" required />
+            <input type="date" name="expiration" id="expiration" class="form-control" ng-model="vm.accountDetails.expiration" required />
             <span ng-show="form.expiration.$dirty && form.expiration.$error.required" class="help-block">Expiration date is required.</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.account_number.$dirty && form.account_number.$invalid }">
-            <label for="expiration">Account Number</label>
+            <label for="account_number">Account Number</label>
             <input type="text" ng-minlength="20" ng-maxlength="20" name="account_number" id="account_number" class="form-control" ng-model="vm.accountDetails.account_number" required />
             <span ng-show="form.account_number.$dirty && form.account_number.$invalid" class="help-block">Account number must be of length 20.</span>
         </div>
@@ -29,10 +29,10 @@
             <input type="text" name="user_name" id="user_name" class="form-control" ng-model="vm.accountDetails.user_name" required />
             <span ng-show="form.user_name.$dirty && form.user_name.$error.required" class="help-block">User Name is required.</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.current_balance.$dirty && form.current_balance.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': form.current_balance.$dirty && form.current_balance.$invalid }">
             <label for="Current Balance">Current Balance</label>
-            <input type="text" name="current_balance" id="current_balance" class="form-control" ng-model="vm.accountDetails.current_balance" required />
-            <span ng-show="form.current_balance.$dirty && form.current_balance.$error.required" class="help-block">Please enter current balance</span>
+            <input type="number" name="current_balance" id="current_balance" class="form-control" ng-model="vm.accountDetails.current_balance" required />
+            <span ng-show="form.current_balance.$dirty && form.current_balance.$invalid" class="help-block">Please enter valid current balance</span>
         </div>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">{{vm.editMode ? 'Update' : 'Create'}}</button>
