@@ -20,6 +20,7 @@ module.exports = function(config) {
       'node_modules/angular-ui-router/release/angular-ui-router.js',
       'node_modules/underscore/underscore-min.js',
       'node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.min.js',
+      'src/client/app/admin/adminapp.js',
       'src/client/app/app.js',
       'src/client/app/services/bank-service.js',
       'src/client/app/login/*.controller.js',

@@ -1,12 +1,13 @@
 ﻿describe('calculator', function () {
 
+    beforeEach(module('adminapp'));
     beforeEach(module('app'));
 
     var $controller, $bankService;
 
-    beforeEach(inject(function (_$controller_, bankService) {
+    beforeEach(inject(function (_$controller_, BankService) {
         $controller = _$controller_;
-        $bankService = bankService;
+        $bankService = BankService;
     }));
 
     describe('Login Controller', function () {
