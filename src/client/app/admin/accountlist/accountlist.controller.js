@@ -25,6 +25,7 @@
         vm.editAccount = editAccount;
         vm.deleteAccount = deleteAccount;
         vm.createAccount = createAccount;
+        vm.exit = exit;
 
         //Redirect to create account page
         function createAccount() {
@@ -34,6 +35,10 @@
         //Redirect to edit account page by account number
         function editAccount(accountDetails) {
             window.location = accountDetails.links[0].href;
+        }
+
+        function exit() {
+            $state.go('admin-login');
         }
 
         //Delete account

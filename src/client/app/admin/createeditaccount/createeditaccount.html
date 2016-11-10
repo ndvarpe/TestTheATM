@@ -19,10 +19,10 @@
             <input type="text" ng-minlength="20" ng-maxlength="20" name="account_number" id="account_number" class="form-control" ng-model="vm.accountDetails.account_number" required />
             <span ng-show="form.account_number.$dirty && form.account_number.$invalid" class="help-block">Account number must be of length 20.</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.pin.$dirty && form.pin.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': form.pin.$dirty && form.pin.$invalid }">
             <label for="Pin">Pin</label>
-            <input type="text" name="pin" id="pin" class="form-control" ng-model="vm.accountDetails.pin" required />
-            <span ng-show="form.pin.$dirty && form.pin.$error.required" class="help-block">Pin is required.</span>
+            <input type="password" ng-minlength="4" ng-maxlength="4" name="pin" id="pin" class="form-control" ng-model="vm.accountDetails.pin" required />
+            <span ng-show="form.pin.$dirty && form.pin.$invalid" class="help-block">Pin is required and must be of length 4.</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.user_name.$dirty && form.user_name.$error.required }">
             <label for="User Name">User Name</label>

@@ -61,7 +61,7 @@
             adminService.createAccount(vm.accountDetails).then(successHandler, errorHandler);
             vm.accountDetails.links = [{ rel: "self", href: "http://localhost:3000/#/createedit/" + vm.accountDetails.account_number }];
             function successHandler(response) {
-                if (response != 'Exists') {
+                if (response == 'Exists') {
                     alert('No account found. Redirecting to list page');
                 }
                 $state.go('account-list');
