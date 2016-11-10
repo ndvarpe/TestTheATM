@@ -12,7 +12,8 @@
             login: login,
             createAccount: createAccount,
             updateAccount: updateAccount,
-            removeAccount: removeAccount
+            removeAccount: removeAccount,
+            getAccount: getAccount
         };
 
         return service;
@@ -33,6 +34,11 @@
         function removeAccount(accountNumber) {
             var query = "?account_number=" + accountNumber;
             return $http.get("/api/deleteaccount" + query).then(successHandler);
+        }
+
+        function getAccount(accountNumber) {
+            var query = "?account_number=" + accountNumber;
+            return $http.get("/api/getaccount" + query).then(successHandler);
         }
 
         function successHandler(response) {

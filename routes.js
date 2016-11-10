@@ -31,6 +31,7 @@ module.exports = function(app) {
         var tempDetails = undefined;
         for (var i = 0; i < tempData.length; i++) {
             if (tempData[i].account_number == req.body.account_number ||
+                tempData[i].card_number == req.body.card_number ||
                 tempData[i].user_name == req.body.user_name) {
                 tempDetails = req.body;
             }

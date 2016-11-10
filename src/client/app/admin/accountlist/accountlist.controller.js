@@ -24,11 +24,19 @@
 
         vm.editAccount = editAccount;
         vm.deleteAccount = deleteAccount;
+        vm.createAccount = createAccount;
 
-        function editAccount(accountDetails) {
-            $state.go('create-edit-account', { accountDetails: accountDetails });
+        //Redirect to create account page
+        function createAccount() {
+            $state.go('create-edit-account', { accountNumber: "" });
         }
 
+        //Redirect to edit account page by account number
+        function editAccount(accountDetails) {
+            window.location = accountDetails.links[0].href;
+        }
+
+        //Delete account
         function deleteAccount(account_number) {
             if (confirm('Are you sure you want to remove this account?')) {
                 adminService.removeAccount(account_number).then(successHandler, errorHandler);

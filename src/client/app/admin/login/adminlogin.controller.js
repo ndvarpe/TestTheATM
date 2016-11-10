@@ -18,11 +18,11 @@
         vm.passwordMsg = "Password is required";
 
         vm.loginBtnText = "Login"
-
         vm.title = 'adminlogin';
         vm.login = login;
 
         function login() {
+            //Call to node server to check if any entry exists with username and password
             adminService.login(vm.username, vm.password).then(successHandler, errorHandler);
 
             function successHandler(data) {

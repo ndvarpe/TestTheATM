@@ -21,6 +21,7 @@
         activate();
 
         function activate() {
+            //account details sent as state params, if null redirect back to login page
             if ($stateParams.accountDetails == null) {
                 $state.go('login', {
                     errorMessage: "You need to be authorized to navigate to account page."
@@ -34,18 +35,21 @@
         function withdraw() {
             var currentBalance = parseFloat(vm.accountDetails.current_balance);
             var money = parseFloat(vm.money);
+            //Validation to check if money being withdrawen is multiple of 100
             if (money % 100 !== 0) {
                 vm.modalTitle = "Error: Invalid amount";
                 vm.modalBody = "Sum to withdraw must be a multiple of 100";
                 openModal();
             }
             else {
+                //Error modal if requested money is greater that current balance
                 if (money > currentBalance) {
                     openErrorModal();
                 }
                 else {
                     openSuccessModal();
                     vm.accountDetails.current_balance = (currentBalance - money).toString();
+                    //Update date on node server after successful withdrawal.
                     bankService.updateDetails(vm.accountDetails).then(function () { }, function () { });
                 }
             }

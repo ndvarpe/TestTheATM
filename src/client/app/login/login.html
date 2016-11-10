@@ -7,10 +7,10 @@
             <input type="text" name="cardnumber" id="cardnumber" class="form-control" ng-model="vm.cardnumber" required />
             <span ng-show="form.cardnumber.$dirty && form.cardnumber.$error.required" class="help-block" ng-bind="vm.cardNumberMsg"></span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.pincode.$dirty && form.pincode.$error.required }">
-            <label for="pincode" ng-bind="vm.pinLbl"></label>
-            <input type="password" name="pincode" id="pincode" class="form-control" ng-model="vm.pincode" required />
-            <span ng-show="form.pincode.$dirty && form.pincode.$error.required" class="help-block" ng-bind="vm.pinMsg"></span>
+        <div class="form-group" ng-class="{ 'has-error': form.pin.$dirty && form.pin.$error.required }">
+            <label for="pin" ng-bind="vm.pinLbl"></label>
+            <input type="password" name="pin" id="pin" class="form-control" ng-model="vm.pin" required />
+            <span ng-show="form.pin.$dirty && form.pin.$error.required" class="help-block" ng-bind="vm.pinMsg"></span>
         </div>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">{{vm.loginBtnText}}</button>

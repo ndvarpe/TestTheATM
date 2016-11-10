@@ -48,11 +48,11 @@
         });
 
         $stateProvider.state('create-edit-account', {
-            url: '/createedit',
+            url: '/createedit/:accountNumber',
             templateUrl: 'src/client/app/admin/createeditaccount/createeditaccount.html',
             controller: 'CreateEditAccountController',
             controllerAs: 'vm',
-            params: { accountDetails: null, },
+            params: { accountNumber: "", },
         });
 
     })

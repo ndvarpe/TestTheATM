@@ -13,10 +13,24 @@
         vm.editMode = true;
         vm.accountDetails = {};
         vm.erroMessage = null;
-        if ($stateParams.accountDetails == null) {
+        if ($stateParams.accountNumber == "") {
             vm.editMode = false;
         } else {
-            vm.accountDetails = $stateParams.accountDetails;
+            //Get account by account number from node server
+            adminService.getAccount($stateParams.accountNumber).then(successHandler, errorHandler)
+            function successHandler(response) {
+                if (response == 'No account found') {
+                    alert('No account found. Redirecting to list page');
+                    $state.go('account-list');
+                }
+                else {
+                    vm.accountDetails = response;
+                }
+            }
+            function errorHandler(response) {
+                console.log("Error while updating account");
+            }
+            
         }
 
         vm.title = 'createeditaccount';
@@ -31,7 +45,9 @@
         }
 
         function update() {
+            //Update account on node server
             adminService.updateAccount(vm.accountDetails).then(successHandler, errorHandler);
+            vm.accountDetails.links = [{ rel: "self", href: "http://localhost:3000/#/createedit/" + vm.accountDetails.account_number }];
             function successHandler(response) {
                 $state.go('account-list');
             }
@@ -41,10 +57,12 @@
         }
 
         function create() {
+            //Create account on node server
             adminService.createAccount(vm.accountDetails).then(successHandler, errorHandler);
+            vm.accountDetails.links = [{ rel: "self", href: "http://localhost:3000/#/createedit/" + vm.accountDetails.account_number }];
             function successHandler(response) {
                 if (response != 'Exists') {
-                    vm.erroMessage = "Account already exists";
+                    alert('No account found. Redirecting to list page');
                 }
                 $state.go('account-list');
             }
