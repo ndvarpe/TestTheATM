@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .factory('bankService', bankService);
+        .factory('BankService', bankService);
 
     bankService.$inject = ['$http', '$q'];
 
@@ -20,7 +20,7 @@
         }
 
         function updateDetails(details) {
-            return $http.post('/api/updatedetails', details).then(successHandler);
+            return $http.post('/api/updateaccount', details).then(successHandler);
         }
 
         function successHandler(response) {

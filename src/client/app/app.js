@@ -10,7 +10,8 @@
         // Angular modules 
         'ui.router',
         'underscore',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'adminapp'
     ])
     .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -28,6 +29,28 @@
             url: '/account',
             templateUrl: 'src/client/app/account/account.html',
             controller: 'AccountController',
+            controllerAs: 'vm',
+            params: { accountDetails: null, },
+        });
+
+        $stateProvider.state('admin-login', {
+            url: '/adminlogin',
+            templateUrl: 'src/client/app/admin/login/adminlogin.html',
+            controller: 'AdminLoginController',
+            controllerAs: 'vm',
+        });
+
+        $stateProvider.state('account-list', {
+            url: '/accountlist',
+            templateUrl: 'src/client/app/admin/accountlist/accountlist.html',
+            controller: 'AccountListCotroller',
+            controllerAs: 'vm',
+        });
+
+        $stateProvider.state('create-edit-account', {
+            url: '/createedit',
+            templateUrl: 'src/client/app/admin/createeditaccount/createeditaccount.html',
+            controller: 'CreateEditAccountController',
             controllerAs: 'vm',
             params: { accountDetails: null, },
         });

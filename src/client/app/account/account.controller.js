@@ -5,7 +5,7 @@
         .module('app')
         .controller('AccountController', accountController);
 
-    accountController.$inject = ['$stateParams', '$state', '$modal', 'bankService'];
+    accountController.$inject = ['$stateParams', '$state', '$modal', 'BankService'];
 
     function accountController($stateParams, $state, $modal, bankService) {
         /* jshint validthis:true */

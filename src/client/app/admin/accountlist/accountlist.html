@@ -1,0 +1,51 @@
+﻿
+<div class="row">
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+    <div class="col-md-8">
+        <h2>Account list</h2>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Card Number</th>
+                    <th>Expiration</th>
+                    <th>Account Number</th>
+                    <th>User Name</th>
+                    <th>Current Balance</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="account in vm.accounts">
+                    <td>
+                        {{ account.card_number }}
+                    </td>
+                    <td>
+                        {{ account.expiration }}
+                    </td>
+                    <td>
+                        {{ account.account_number }}
+                    </td>
+                    <td>
+                        {{ account.user_name }}
+                    </td>
+                    <td>
+                        {{ account.current_balance }}
+                    </td>
+                    <td>
+                        <input type="button" value="Edit" class="btn btn-primary" ng-click="vm.editAccount(account)">
+                    </td>
+                    <td>
+                        <input type="button" value="Remove" class="btn btn-primary" ng-click="vm.deleteAccount(account.account_number)">
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+</div>

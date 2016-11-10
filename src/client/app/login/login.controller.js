@@ -5,7 +5,7 @@
         .module('app')
         .controller('LoginController', loginController);
 
-    loginController.$inject = ['$http', '$state', '_', 'bankService', '$modal'];
+    loginController.$inject = ['$http', '$state', '_', 'BankService', '$modal'];
 
     function loginController($http, $state, _, bankService, $modal) {
         /* jshint validthis:true */
