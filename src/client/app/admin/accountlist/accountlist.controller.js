@@ -12,15 +12,9 @@
         var vm = this;
         vm.title = 'accountlist';
 
-        bankService.getTestData().then(successHandler, errorHandler);
-
-        function successHandler(response) {
-            vm.accounts = response;
-        }
-
-        function errorHandler() {
-            console.log('Error while fetching data.');
-        }
+        var data = bankService.query({}, function () {
+            vm.accounts = data;
+        });
 
         vm.editAccount = editAccount;
         vm.deleteAccount = deleteAccount;

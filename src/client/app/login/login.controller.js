@@ -20,7 +20,7 @@
         //Get all date from node server (we can instead use getting details by login at the timne of login only)
         var data =  bankService.query({}, function() {
             vm.data = data;
-        }); // get() returns a single entry
+        }); 
 
         function successHandler(response) {
             vm.data = response;
