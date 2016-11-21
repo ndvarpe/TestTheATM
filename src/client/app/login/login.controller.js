@@ -5,9 +5,9 @@
         .module('atmApp')
         .controller('LoginController', loginController);
 
-    loginController.$inject = ['$http', '$state', '_', 'bankService', '$modal'];
+    loginController.$inject = ['$state', '_', 'bankService', '$modal'];
 
-    function loginController($http, $state, _, bankService, $modal) {
+    function loginController($state, _, bankService, $modal) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'login';
