@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('atmApp')
         .controller('CreateEditAccountController', createEditAccountController);
 
-    createEditAccountController.$inject = ['$state', '$stateParams', 'AdminService'];
+    createEditAccountController.$inject = ['$state', '$stateParams', 'adminService'];
 
     function createEditAccountController($state, $stateParams, adminService) {
         /* jshint validthis:true */

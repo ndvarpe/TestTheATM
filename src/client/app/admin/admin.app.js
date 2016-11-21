@@ -1,4 +1,4 @@
 ﻿(function () {
     'use strict';
-    angular.module('adminapp', []);
+    angular.module('adminApp', []);
 })();

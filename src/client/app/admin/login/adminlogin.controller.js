@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('adminapp')
+        .module('adminApp')
         .controller('AdminLoginController', adminLoginController);
 
-    adminLoginController.$inject = ['AdminService', '$state'];
+    adminLoginController.$inject = ['adminService', '$state'];
 
     function adminLoginController(adminService, $state) {
         /* jshint validthis:true */

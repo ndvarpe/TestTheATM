@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('adminapp')
-        .factory('AdminService', adminService);
+        .module('adminApp')
+        .factory('adminService', adminService);
 
     adminService.$inject = ['$http', '$q'];
 
@@ -20,37 +20,41 @@
 
         function login(username, password) {
             var query = "?username=" + username + "&password="+password;
-            return $http.get("/api/getadmin"+query).then(successHandler);
+            return $http.get("/api/getadmin" + query).then(successHandler, errorHandler);
         }
 
         function updateAccount(account) {
-            return $http.post('/api/updateaccount', account).then(successHandler);
+            return $http.post('/api/updateaccount', account).then(successHandler, errorHandler);
         }
 
         function createAccount(account) {
-            return $http.post('/api/createaccount', account).then(successHandler);
+            return $http.post('/api/createaccount', account).then(successHandler, errorHandler);
         }
 
         function removeAccount(accountNumber) {
             var query = "?account_number=" + accountNumber;
-            return $http.get("/api/deleteaccount" + query).then(successHandler);
+            return $http.get("/api/deleteaccount" + query).then(successHandler, errorHandler);
         }
 
         function getAccount(accountNumber) {
             var query = "?account_number=" + accountNumber;
-            return $http.get("/api/getaccount" + query).then(successHandler);
+            return $http.get("/api/getaccount" + query).then(successHandler, errorHandler);
         }
 
         function successHandler(response) {
-            var dfd = $q.defer();
+            var deferred = $q.defer();
             if (response.status === 200) {
                 /*jshint -W106 */
                 //jscs:disable
-                dfd.resolve(response.data);
+                deferred.resolve(response.data);
             } else if (response.status === 400) { // Bad Request
-                dfd.reject(response.data.message);
+                deferred.reject(response.data.message);
             }
-            return dfd.promise;
+            return deferred.promise;
+        }
+
+        function errorHandler(response) {
+            return response;
         }
     }
 })();

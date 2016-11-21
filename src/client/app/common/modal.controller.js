@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('atmApp')
         .controller('ModalController', modalController);
 
     modalController.$inject = ['$modalInstance', 'messageObj', '$timeout'];

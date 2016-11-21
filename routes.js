@@ -1,20 +1,39 @@
-var testdata = require('./testdata/atm-data.json');
+var testatmdata = require('./testdata/atm-data.json');
 var testadmindata = require('./testdata/login-data.json');
 var fs = require('fs');
 
 module.exports = function(app) {
 	// api ---------------------------------------------------------------------
-	// get atm data
+    // get atm data
+
+    app.get('/api/atm', function (req, res) {
+        res.send(testatmdata);
+    });
+
+    app.post('/api/atm', function (req, res) {
+        var tempData = testatmdata;
+        var tempDetails = undefined;
+        for (var i = 0; i < tempData.length; i++) {
+            if (tempData[i].account_number == req.body.account_number) {
+                tempDetails = req.body;
+                tempData.splice(i, 1);
+                tempData.push(tempDetails);
+                writeToFile(tempData);
+            }
+        }
+        res.send('Success');
+    });
+
     app.get('/api/getatmdata', function (req, res) {
-        res.send(testdata);
+        res.send(testatmdata);
     });
 
     //get account
     app.get('/api/getaccount', function (req, res) {
         var data = undefined;
-        for (var i = 0; i < testdata.length; i++) {
-            if (testdata[i].account_number == req.query.account_number) {
-                data = testdata[i];
+        for (var i = 0; i < testatmdata.length; i++) {
+            if (testatmdata[i].account_number == req.query.account_number) {
+                data = testatmdata[i];
             }
         }
         if (data) {
@@ -27,7 +46,7 @@ module.exports = function(app) {
 
     //create account
     app.post('/api/createaccount', function (req, res) {
-        var tempData = testdata;
+        var tempData = testatmdata;
         var tempDetails = undefined;
         for (var i = 0; i < tempData.length; i++) {
             if (tempData[i].account_number == req.body.account_number ||
@@ -49,7 +68,7 @@ module.exports = function(app) {
 
     //update account details
     app.post('/api/updateaccount', function (req, res) {
-        var tempData = testdata;
+        var tempData = testatmdata;
         var tempDetails = undefined;
         for (var i = 0; i < tempData.length; i++) {
             if (tempData[i].account_number == req.body.account_number) {
@@ -64,7 +83,7 @@ module.exports = function(app) {
 
     //delete account
     app.get('/api/deleteaccount', function (req, res) {
-        var tempData = testdata;
+        var tempData = testatmdata;
         for (var i = 0; i < tempData.length; i++) {
             if (tempData[i].account_number == req.query.account_number) {
                 tempData.splice(i, 1);

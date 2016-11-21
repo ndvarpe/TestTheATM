@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('atmApp')
         .controller('AccountListCotroller', accountListCotroller);
 
-    accountListCotroller.$inject = ['BankService', 'AdminService', '$state'];
+    accountListCotroller.$inject = ['bankService', 'adminService', '$state'];
 
     function accountListCotroller(bankService, adminService, $state) {
         /* jshint validthis:true */

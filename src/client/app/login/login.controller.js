@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('atmApp')
         .controller('LoginController', loginController);
 
-    loginController.$inject = ['$http', '$state', '_', 'BankService', '$modal'];
+    loginController.$inject = ['$http', '$state', '_', 'bankService', '$modal'];
 
     function loginController($http, $state, _, bankService, $modal) {
         /* jshint validthis:true */
@@ -18,7 +18,9 @@
         vm.cardNumberMsg = 'Credit card number is required';
 
         //Get all date from node server (we can instead use getting details by login at the timne of login only)
-        bankService.getTestData().then(successHandler, errorHandler);
+        var data =  bankService.query({  }, function() {
+            vm.data = data;
+        }); // get() returns a single entry
 
         function successHandler(response) {
             vm.data = response;

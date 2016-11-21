@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('atmApp')
         .controller('AccountController', accountController);
 
-    accountController.$inject = ['$stateParams', '$state', '$modal', 'BankService'];
+    accountController.$inject = ['$stateParams', '$state', '$modal', 'bankService'];
 
     function accountController($stateParams, $state, $modal, bankService) {
         /* jshint validthis:true */
@@ -50,7 +50,8 @@
                     openSuccessModal();
                     vm.accountDetails.current_balance = (currentBalance - money).toString();
                     //Update date on node server after successful withdrawal.
-                    bankService.updateDetails(vm.accountDetails).then(function () { }, function () { });
+                    bankService.save(vm.accountDetails, function () { });
+                        //.then(function () { }, function () { });
                 }
             }
         }

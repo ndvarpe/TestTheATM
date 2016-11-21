@@ -6,12 +6,13 @@
         return window._; //Underscore should be loaded on the page
     });
 
-    angular.module('app', [
+    angular.module('atmApp', [
         // Angular modules 
         'ui.router',
         'underscore',
         'ui.bootstrap',
-        'adminapp'
+        'adminApp',
+        'ngResource'
     ])
     .config(function ($stateProvider, $urlRouterProvider) {
 
