@@ -25,6 +25,7 @@
                 }
                 else {
                     vm.accountDetails = response;
+                    vm.accountDetails.current_balance = parseFloat(vm.accountDetails.current_balance);
                 }
             }
             function errorHandler(response) {
