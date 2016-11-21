@@ -5,9 +5,9 @@
         .module('atmApp')
         .controller('LoginController', loginController);
 
-    loginController.$inject = ['$state', '_', 'bankService', '$modal'];
+    loginController.$inject = ['$state', '_', 'bankService', '$modal', '$scope'];
 
-    function loginController($state, _, bankService, $modal) {
+    function loginController($state, _, bankService, $modal, $scope) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'login';
@@ -51,17 +51,11 @@
         //Error modal if login is invalid
         function openErrorModal() {
             vm.modalTitle = vm.errorMessage;
+            $scope.messageObj = { modalTitle: vm.modalTitle, modalBody: vm.modalBody };
             var modalInstance = $modal.open({
-                templateUrl: 'src/client/app/common/views/modal-template.html',
-                controller: 'ModalController',
-                controllerAs: 'viewModel',
-                resolve: {
-                    messageObj: function () {
-                        return { modalTitle: vm.modalTitle, modalBody: null }
-                    }
-                }
+                template: '<my-modal></my-modal>',
+                scope: $scope,
             });
-
             modalInstance.result.then(function (selectedItem) {
                 $state.go('login', {
                     errorMessage: null

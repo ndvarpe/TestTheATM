@@ -5,17 +5,18 @@
         .module('atmApp')
         .controller('ModalController', modalController);
 
-    modalController.$inject = ['$modalInstance', 'messageObj', '$timeout'];
+    modalController.$inject = ['$scope', '$timeout', '$modalStack'];
 
     //Common modal to be opened from different pages.
-    function modalController($modalInstance, messageObj, $timeout) {
+    function modalController($scope, $timeout, $modalStack) {
         /* jshint validthis:true */
         var viewModel = this;
-        viewModel.messageObj = messageObj;
+        viewModel.messageObj = $scope.messageObj;
+        console.log(viewModel);
         viewModel.counter = 0;
 
         viewModel.ok = function () {
-            $modalInstance.close();
+            $modalStack.dismissAll();
         };
 
         //To show 10s timer on ok button

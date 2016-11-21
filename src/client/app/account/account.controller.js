@@ -5,9 +5,9 @@
         .module('atmApp')
         .controller('AccountController', accountController);
 
-    accountController.$inject = ['$stateParams', '$state', '$modal', 'bankService'];
+    accountController.$inject = ['$stateParams', '$state', '$modal', 'bankService', '$scope'];
 
-    function accountController($stateParams, $state, $modal, bankService) {
+    function accountController($stateParams, $state, $modal, bankService, $scope) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'account';
@@ -73,17 +73,12 @@
             vm.modalBody = "Current balance is $" + (parseFloat(vm.accountDetails.current_balance) - parseFloat(vm.money)).toString();
             openModal();
         }
-
+        
         function openModal() {
+            $scope.messageObj = { modalTitle: vm.modalTitle, modalBody: vm.modalBody };
             var modalInstance = $modal.open({
-                templateUrl: 'src/client/app/common/views/modal-template.html',
-                controller: 'ModalController',
-                controllerAs: 'viewModel',
-                resolve: {
-                    messageObj: function () {
-                        return { modalTitle: vm.modalTitle, modalBody: vm.modalBody }
-                    }
-                }
+                template: '<my-modal></my-modal>',
+                scope: $scope,
             });
 
             modalInstance.result.then(function (selectedItem) {
